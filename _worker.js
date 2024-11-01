@@ -328,10 +328,6 @@ async function getSUB(api, 追加UA, userAgentHeader) {
 	let newapi = "";
 	let 订阅转换URLs = "";
 	const controller = new AbortController(); // 创建一个AbortController实例，用于取消请求
-
-	const timeout = setTimeout(() => {
-		controller.abort(); // 2秒后取消所有请求
-	}, 2000);
 	
 	try {
 		// 使用Promise.allSettled等待所有API请求完成，无论成功或失败
@@ -373,8 +369,6 @@ async function getSUB(api, 追加UA, userAgentHeader) {
 		}
 	} catch (error) {
 		console.error(error); // 捕获并输出错误信息
-	} finally {
-		clearTimeout(timeout); // 清除定时器
 	}
 	
 	const 订阅内容 = await ADD(newapi);
